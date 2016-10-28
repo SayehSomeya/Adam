@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!--- style for drag and drog-->
+
+        <link rel="stylesheet" href="folder.css">
+        <!--- input style-->
+
+        <link rel="stylesheet" href="file.css">    
+
+        <link rel="stylesheet" href="adam.css">    
+
+    </head>
+    <body>
+
+
+        <script src="file.js"></script>
+        <script src="tooltip.js"></script>
+        <script src="folder.js"></script>
+
+        <script src="adamSubmit.js"></script>
+        <script src="outFile.js"></script>
+
+
+
+        <div class="container">
+
+            <div class="page-header">
+
+
+                <ul class="nav nav-pills" id="navbar" >
+                    <li class=""><a href="#">Home</a></li>
+
+
+                    <li><a href="#" style="display:none" id="fil">File </a></li>
+                    <li><a href="#" style="display:none" id="opt">Option</a></li>
+                    <li><a href="#" >Help</a></li>
+
+                </ul>
+            </div>   
+
+
+
+            <script>
+               
+                 function setRestQuantity(ouputFileId, quantityId, choiceId, collapseTyp,demolkiuId, confileoutId) {
+                    
+                 document.getElementById(demolkiuId).innerHTML = 'It will take a few second';
+                 var xhttp = new XMLHttpRequest();
+                 xhttp.onreadystatechange = function () {
+                 if (xhttp.status == 200) {
+                 document.getElementById(demolkiuId).innerHTML = xhttp.responseText;
+            
+               //  alert(xhttp.responseText);
+                   
+                          if (xhttp.responseText.match('true')) {
+                             document.getElementById(demolkiuId).style.color = "white";
+                                document.getElementById(demolkiuId).innerHTML = xhttp.responseText;
+                                $(".btn-success").hide();
+                                $(confileoutId).show();
+
+
+                            } else {
+                                document.getElementById(demolkiuId).style.color = "red";
+
+                                document.getElementById(demolkiuId).innerHTML = xhttp.responseText;
+
+                                $(".btn-success").hide();
+                          
+
+
+                            }
+                
+                 }
+                
+                
+                 };
+                
+                
+                
+                
+                 var file = document.getElementById("myImage").value;
+                 var fileName = file.match(/[^\/\\]+$/);
+                 var ouputFileName = document.getElementById(ouputFileId).value;
+                
+                 var quantity = document.getElementById(quantityId).value;
+                 var quantityString = " " + quantity;
+                 var choice = document.getElementById(choiceId).textContent.toLowerCase();
+                
+                 var y = "http://localhost:8084/AdamBackend/rest/file/namn/";
+                 var z = y + collapseTyp + "," + fileName + "," + ouputFileName + "," + choice + "," + quantityString;
+               
+        xhttp.open("GET", z, true);
+                
+                 xhttp.send(z);
+                
+                
+                
+                
+                 }
+
+
+            </script>
+
+
+
+
+
+            <script>
+
+
+                function setRest(ouputFileId, choiceId, collapseTyp, demolkiuId, confileoutId) {
+                    document.getElementById(demolkiuId).innerHTML = 'It will take a few second';
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (xhttp.status == 200) {
+
+
+
+
+                            if (xhttp.responseText.match('true')) {
+                               document.getElementById(demolkiuId).style.color = "white";
+                                document.getElementById(demolkiuId).innerHTML = xhttp.responseText;
+                                $(".btn-success").hide();
+                                $(confileoutId).show();
+
+
+                            } else {
+                                document.getElementById(demolkiuId).style.color = "red";
+
+                                document.getElementById(demolkiuId).innerHTML = xhttp.responseText;
+
+                                $(".btn-success").hide();
+                                // $(confileoutId).show();
+
+
+                            }
+                        }
+
+
+                    };
+
+                    var file = document.getElementById("myImage").value;
+                    var fileName = file.match(/[^\/\\]+$/);
+                    var ouputFileName = document.getElementById(ouputFileId).value;
+
+
+                    var choice = document.getElementById(choiceId).textContent.toLowerCase();
+
+                    var y = "http://localhost:8084/AdamBackend/rest/file/namn/";
+                    var z = y + collapseTyp + "," + fileName + "," + ouputFileName + "," + choice+","+"60";
+
+                    xhttp.open("GET", z, true);
+
+                    xhttp.send(z);
+
+
+
+                }
+
+
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <script type="text/javascript">
+
+                function f1(x,ouputFileId,collapseTyp,abc)
+                {
+                    var file = document.getElementById("myImage").value;
+                    var fileName = file.match(/[^\/\\]+$/);
+                    var ouputFileName = document.getElementById(ouputFileId).value;
+
+                  
+                    var y = "http://localhost:8084/AdamBackend/rest/file/";
+                    var z = y +x+ fileName + "," + ouputFileName+","+collapseTyp;
+
+                    document.getElementById(abc).href = z;
+                }
+
+            </script>
+
+
+
+
+
+
+
+
+
+            <br> <br>
+
+
+            <div id="upploadFILE" style="display:toggle;" > 
+                <div class="input-group" id='image-preview'>
+                    <input type="text" class="form-control image-preview-filename" disabled="disabled" id="image-preview-filename"> <!-- don't give a name === doesn't send on POST/GET -->
+                    <div class="input-group-btn">
+
+                        <form action="http://localhost:8084/AdamBackend/rest/file/uploade" method="post" enctype="multipart/form-data">
+
+                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;" id="image-preview-clear">
+                                <span class="glyphicon glyphicon-trash"></span> Clear
+                            </button>
+
+                            <!-- image-preview-input -->
+                            <span class="btn btn-default image-preview-input" id="nu">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+
+
+                                <span class="image-preview-input-title" id="browse" >Browse</span>
+
+                                <input type="file"  name="file" id="myImage"   onchange="myFunction()"   /> <!-- rename it -->
+
+                            </span>
+
+
+                            <button type="submit"   class="btn btn-primary image-preview-upload" style="display:none;"  id="image-preview-upload" onclick="changeImage()"/>
+
+
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+
+                            </button>   
+
+                        </form>     
+
+                    </div>
+                </div>   
+
+                <!---input file end-->
+                <!---add folder-->
+
+                <!-- Trigger the modal with a button -->
+                <div class = "pull-right"  ><a href="#"  data-toggle="modal" data-target="#myModal"> <span class="help-block" id="ass"> Add a folder 
+                        </span></a></div>
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Load folder </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="upload"  method="POST" enctype="multipart/form-data">
+
+
+
+                                    <fieldset>
+
+                                        <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+                                        <div>
+
+                                            <div id="filedrag">
+                                                <h1>   <label for="fileselect" class="glyphicon glyphicon-cloud-upload"> </label></h1>
+
+                                                Drop folder here:
+
+
+                                                <p>  <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" style="display:none" /></p>
+                                                <div id="demo" style=" text-align: center;"> </div> 
+
+                                            </div>
+
+                                        </div>
+
+                                        <div id="submitbutton">
+                                            <button type="submit">Upload Files</button>
+                                        </div>
+
+                                    </fieldset>
+
+                                </form> 
+
+
+
+                                <div id="messages" style="display:none">
+                                </div> 
+                                <button id="tlm" type="button"  style="display:none">Upload</button>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---add a folder end--->
+
+                <!---add input end--->
+
+            </div>
+
+
+
+            <br> <br>     <br> <br>     
+
+
+
+
+            <!----- panelgropup-->
+
+            <div class="panel-group" id="accordion" style="display:none">
+                <div class="panel panel-default" >
+                    <div class="panel-heading">
+                        <h4 class="panel-title"   >
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Conversion</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body"> 
+
+                            <label class="radio-inline" id="opada" style="display:none"><input type="radio" name="optradio"  value='first'>Convert to adam</label>
+                            <label class="radio-inline" id="opto" style="display:none"><input type="radio" name="optradio" value='second'>Convert to fasta <span id="demo"> </span></label>
+                          
+                    
+                            <br>    <br>   <br>  
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8"> 
+
+                                        <div> 
+                                            <form class="form-group"> 
+                                                <label class="list-inline">
+                                                    <a style="display:none" href="#" data-toggle="tooltip" data-placement="top" title="Hooray!" id="infett"><span   class="glyphicon glyphicon-info-sign"> </span></a>
+                                                </label>&nbsp;
+
+                                                <button  type="button" class="btn btn-primary" id="ett" style="display:none" onclick="myFunc()">Primary</button> 
+                                            </form>
+
+                                            <div  class="form-horizontal" id="confil1" style="display:none">
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-2" for="txt"></label>
+                                                    <div class="col-sm-5">
+                                                        <input type="text" class="form-control " id="txt1" placeholder="Enter file name" required>       
+
+                                                    </div>
+
+
+                                                    <div class="col-sm-2" ><button type="button" class="btn btn-success" id="confileout1" style="display:none"  onclick="f1('getFolder/','txt1','Conversion','abc1')"  ><a href="" id="abc1">Open file</a> </button> </div>
+
+
+
+
+
+                                                </div>  
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-5">
+
+
+
+
+
+
+
+                                                        <button type="submit" class="btn btn-default" id='sub1' onclick="setRest('txt1', 'ett', 'Conversion', 'demoID1', '#confileout1')" >Submit</button>
+
+
+
+                    <span class="help-block" id="demoID1" >  </span>                           
+
+
+
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <br> 
+
+                                            <br> <br> 
+                                        </div>
+                                        <p> 
+
+                                            <label class="list-inline">
+                                                <a  style="display:none" href="#" data-toggle="tooltip" data-placement="top" title="Hooray!" id="inftva"><span   class="glyphicon glyphicon-info-sign"> </span></a>
+                                            </label>&nbsp;
+
+                                            <button type="button" class="btn btn-primary" id="tva" style="display:none">Primary</button>  </p>
+
+
+                                        <div class="form-horizontal" id="confil2" style="display:none">
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="txt"></label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" class="form-control txtlm" id="txt2" placeholder="Enter file name"  required>       
+
+                                                </div>
+
+                                                <div class="col-md-2"><button type="button" class="btn btn-success"  id="confileout2" style="display:none" onclick="f1('getFolder/','txt2','Conversion','abc2')"  ><a href="" id="abc2">Open file</a> </button> </div>
+                                            </div>  
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-5">
+
+
+                           
+                                                        <button type="submit" class="btn btn-default" id='sub2' onclick="setRest('txt2', 'tva', 'Conversion', 'demoID2', '#confileout2')" >Submit</button>
+
+
+                                                    
+          <span class="help-block" id="demoID2" >  </span>         
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br> 
+
+
+                                    </div></div> </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="panel panel-default" >
+                    <div class="panel-heading">
+
+                        <h4 class="panel-title" id="print">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">     
+                                Print</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body"> 
+                            <br>     
+                            <p> 
+                                <label class="list-inline">
+                                    <a  style="display:none" href="#" data-toggle="tooltip" data-placement="top" title="Hooray!" id="infpri"><span   class="glyphicon glyphicon-info-sign"> </span></a>
+                                </label>&nbsp;  
+
+                                <button type="button" class="btn btn-primary" id="tre" style="display:toggle">Print</button>  </p>
+
+                            <div class="form-horizontal" id="prifile1" style="display:none">
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="txt"></label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control txtlm" id="txt3" placeholder="Enter file name"  required>       
+
+                                    </div>
+
+                                    <div class="col-md-2" ><button type="button" class="btn btn-success"  id="prifileout1" style="display:none" onclick="f1('getFile/','txt3','Print','abc3')"  ><a href="" id="abc3">Open file</a> </button> </div>
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-5">
+                                        <button type="submit" class="btn btn-primary" id='sub3'  onclick="setRest('txt3', 'tre', 'Print', 'demoID3', '#prifileout1')" >Submit</button>
+
+                               <span class="help-block" id="demoID3" >  </span>                                  
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>  <p> 
+                                <label class="list-inline">
+                                    <a  style="display:none" href="#" data-toggle="tooltip" data-placement="top" title="Hooray!" id="inffla"><span   class="glyphicon glyphicon-info-sign"> </span></a>
+                                </label>&nbsp;
+
+                                <button type="button" class="btn btn-primary" id="fyra" style="display:toggle">Flatten</button>  </p>
+
+                            <div class="form-horizontal" id="prifile2" style="display:none">
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="txt"></label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control txtlm" id="txt4" placeholder="Enter file name"  required>       
+
+                                    </div>
+
+                                    <div class="col-md-2"  ><button type="button" class="btn btn-success" id="prifileout2" style="display:none" onclick="f1('getFolderPrint/','txt4','Print','abc4')"  ><a href="" id="abc4">Open file</a> </button> </div>
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-5">
+
+
+
+
+
+                                        <button type="submit" class="btn btn-default" id='sub4' onclick="setRest('txt4', 'fyra', 'Print', 'demoID4', '#prifileout2')" >Submit</button>
+
+                               <span class="help-block" id="demoID4" >  </span>                                   
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>  
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                <div class="panel panel-default" id="Adamactions">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Adam actions</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body"> 
+                            
+                            
+                            
+                            <br> 
+
+                            <p> 
+                                <label class="list-inline">
+                                    <a  style="display:none" href="#" data-toggle="tooltip" data-placement="top" title="Hooray!" id="infX"><span   class="glyphicon glyphicon-info-sign"> </span></a>
+                                </label>&nbsp;
+
+                                <button type="button" class="btn btn-primary" id="X" style="display:none">Primary</button>  </p>
+
+                            <div class="form-horizontal" id="actfileX" style="display:none">
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="txt"></label>
+                                    <div class="col-sm-5">
+                                        <input  type="text" class="form-control" id="txtX" placeholder="Enter file name" required>
+
+
+                                    </div>
+
+                                    <div class="col-md-2"><button type="button" class="btn btn-success" id="actfileoutX" style="display:none"   onclick="f1('getFile/','txtX','Adamactions','abcX')"  ><a href="" id="abcX">Open file</a> </button> </div>
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-5">
+                                        <button type="submit" class="btn btn-default" id='subX' onclick="setRest('txtX', 'X', 'Adamactions', 'demoIDX', '#actfileoutX')" >Submit</button>
+
+
+         <span class="help-block" id="demoIDX" >  </span>          
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                            
+                           
+                            
+                            <br>  
+                            <p> 
+                                <label class="list-inline">
+                                    <a style="display:none" href="#" data-toggle="tooltip" data-placement="top" title="Hooray!" id="inffem"><span   class="glyphicon glyphicon-info-sign"> </span></a>
+                                </label>&nbsp;
+
+                                <button type="button" class="btn btn-primary" id="sju" style="display:none">Primary</button>  </p>
+
+                            <div class="form-horizontal" id="actfile3" style="display:none">
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="txt"></label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control txtlm" id="txt5" placeholder="Enter file name"  required>       
+
+                                    </div>
+
+                                    <div class="col-md-2"><button type="button" class="btn btn-success" id="actfileout3" style="display:none" onclick="f1('getFile/','txt5','Adamactions','abc5')"  ><a href="" id="abc5">Open file</a> </button> </div>
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-5">
+                                        <button type="submit" class="btn btn-default" id='sub7' onclick="setRest('txt5', 'sju', 'Adamactions', 'demoID5', '#actfileout3')" >Submit</button>
+                                    
+  <span class="help-block" id="demoID5" >  </span>                        
+                                    
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <br>  <p> 
+
+                                <label class="list-inline">
+                                    <a style="display:none" href="#" data-toggle="tooltip" data-placement="top" title="Hooray!" id="infsex"><span   class="glyphicon glyphicon-info-sign"> </span></a>
+                                </label>&nbsp;
+
+                                <button type="button" class="btn btn-primary" id="otta" style="display:none">Primary</button>  </p>
+
+                            <div class="form-horizontal" id="actfile4" style="display:none">
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="txt"></label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="txt6" placeholder="Enter file name" required>
+
+
+                                    </div>
+
+                                    <div class="col-md-2"><button type="button" class="btn btn-success" id="actfileout4" style="display:none"  onclick="f1('getFolderPrint/','txt6','Adamactions','abc6')"  ><a href="" id="abc6">Open file</a> </button> </div>
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-5">
+                                        <button type="submit" class="btn btn-default" id='sub8' onclick="setRest('txt6', 'otta', 'Adamactions', 'demoID6', '#actfileout4')">Submit</button>
+                                   
+                                    
+                  <span class="help-block" id="demoID6" >  </span>      
+                                    
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br> 
+
+                            <p> 
+                                <label class="list-inline">
+                                    <a  style="display:none" href="#" data-toggle="tooltip" data-placement="top" title="Hooray!" id="infsju"><span   class="glyphicon glyphicon-info-sign"> </span></a>
+                                </label>&nbsp;
+
+                                <button type="button" class="btn btn-primary" id="fem" style="display:none">Primary</button>  </p>
+
+                            <div class="form-horizontal" id="actfile1" style="display:none">
+
+                     
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="txt"></label>
+                                    <div class="col-sm-5">
+                                    <input type="text" class="form-control" id="txt7" placeholder="Enter file name" required>
+
+                                    </div>
+
+                                    <div class="col-md-2"><button type="button" class="btn btn-success" id="actfileout1" style="display:none"   onclick="f1('getFolderPrint/','txt7','Adamactions','abc7')"  ><a href="" id="abc7">Open file</a> </button> </div>
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-5">
+                                        <button type="submit" class="btn btn-default" id='sub5' onclick="setRest('txt7', 'fem', 'Adamactions', 'demoID7', '#actfileout1')" >Submit</button>
+
+
+      <span class="help-block" id="demoID7" >  </span>           
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>  <p> 
+                                <label class="list-inline">
+                                    <a  style="display:none" href="#" data-toggle="tooltip" data-placement="top" title="Hooray!" id="infatt"><span   class="glyphicon glyphicon-info-sign"> </span></a>
+                                </label>&nbsp;
+
+                                <button type="button" class="btn btn-primary" id="sex" style="display:none">Primary</button>  </p>
+
+                            <div class="form-horizontal" id="actfile2" style="display:none">
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd"></label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="txt9" placeholder="Enter file name" required>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="txt"></label>
+                                    <div class="col-sm-5">
+                                        <input  type="number" class="form-control" id="txt10" placeholder="Enter the number" required>
+
+
+                                    </div>
+
+                                    <div class="col-md-2"><button type="button" class="btn btn-success" id="actfileout2" style="display:none"  onclick="f1('getFolderPrint/','txt9','Adamactions','abc8')"  ><a href="" id="abc8">Open file</a> </button> </div>
+
+
+
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-5">
+                                        <button type="submit" class="btn btn-default" id='sub6' onclick="setRestQuantity('txt9', 'txt10', 'sex', 'Adamactions', 'demoID8', '#actfileout2')">Submit</button>
+          
+      <span class="help-block" id="demoID8" >  </span>                                     
+                                    
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!----script for drag and drop--->
+
+
+
+
+        <script>
+            function setg() {
+
+
+                /*  
+                 var a = document.createElement('a');
+                 var linkText = document.createTextNode("my title text");
+                 a.appendChild(linkText);
+                 a.title = "my title text";
+                 a.href = "http://example.com";
+                 document.body.appendChild(a);
+                 */
+            }
+
+        </script>
+
+
+        <!----footer-->
+
+
+
+
+
+
+
+
+        <footer class="footer">
+
+            <p class="text-muted">Coppright © copy 2016 ADAM</p>
+
+        </footer>
+
+
+    </body>
+</html>
+

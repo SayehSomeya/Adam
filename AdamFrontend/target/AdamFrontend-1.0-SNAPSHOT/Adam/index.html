@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="Css/DropDowns.css"/>
+
+        <style>
+         
+#wrapper {
+  padding-left: 250px;
+  padding-right: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper-left {
+  margin-left: -250px;
+   margin-bottom: 5%;
+  left: 250px;
+  width: 250px;
+  background: #000;
+  position: fixed;
+  height: 100%;
+
+}
+
+#sidebar-wrapper-left.collapsed{
+  margin-left: -250px;
+   margin-top: 10%;
+  left: 250px;
+  width: 250px;
+  background:#0c0;
+  position: fixed;
+  height: 80%;
+
+}
+ 
+#wrapper.active-left {
+  padding-left: 0;
+}
+ 
+
+#wrapper.active-left #sidebar-wrapper-left {
+  left: 0;
+}
+ 
+
+
+#page-content-wrapper {
+  width: 100%;
+}
+
+
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+
+.sidebar-nav li a {
+  color: #999999;
+  display: block;
+  text-decoration: none;
+  padding-left: 60px;
+}
+
+.sidebar-nav li a span:before {
+  position: absolute;
+  left: 0;
+  color: #41484c;
+  text-align: center;
+  width: 20px;
+  line-height: 18px;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li.active {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  line-height: 60px;
+  font-size: 18px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+
+
+.content-header {
+  height: 65px;
+  line-height: 65px;
+}
+
+.content-header h1 {
+  margin: 0;
+  margin-left: 20px;
+  line-height: 65px;
+  display: inline-block;
+}
+
+ 
+.btn-menu {
+  color: #000;
+} 
+
+.inset {
+  padding: 20px;
+}
+
+@media (max-width:767px) {
+
+#wrapper {
+  padding-left: 0;
+}
+
+#sidebar-wrapper {
+  left: 0;
+}
+
+#wrapper.active {
+  position: relative;
+  left: 250px;
+}
+
+#wrapper.active #sidebar-wrapper {
+  left: 250px;
+  width: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+#menu-toggle {
+  display: inline-block;
+}
+
+.inset {
+  padding: 15px;
+}
+
+}
+
+
+            
+              
+            
+</style>
+    </head>
+    <body>
+        <!--- Javacript -->
+        <script src="js/DropDowns.js"></script>
+
+
+
+<!--- Head--->
+<div id="wrapp"> 
+
+        <nav class="navbar navbar-default navbar-fixed-top ">
+
+
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                        <span class ="icon-bar"> </span> 
+                        <span class ="icon-bar"> </span> 
+                        <span class ="icon-bar"> </span> 
+                    </button>    
+
+                </div>
+
+
+                <div id="navbar" class="navbar-collapse collapse">
+                       <ul class="nav navbar-nav navbar-right">
+                            <li ><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+   
+                        </ul>
+ 
+                    
+                       <ul class="nav navbar-nav navbar-left">
+
+                            <li>     
+                                <div class="container">
+                                    <div id="dropdown">
+                                        <a href="#"   data-toggle="dropdown"> 
+
+
+                                            <h3>    <span class="glyphicon glyphicon-th"></span></h3> 
+                                        </a> 
+                                        
+                                        
+                                        
+                                        <ul class="dropdown-menu" >
+                                      
+                                              <div  id="sidebar-wrapper-left" >
+            <nav id="spy">
+                <ul class="sidebar-nav nav">
+                    <li class="sidebar-brand">
+                        <a href="#home"><span class="fa fa-home solo">Home</span></a>
+                    </li>
+                    <li>
+                        <a href="#anch1" data-scroll>
+                            <span class="fa fa-anchor solo">Anchor 1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#anch2" data-scroll>
+                            <span class="fa fa-anchor solo">Anchor 2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#anch3" data-scroll>
+                            <span class="fa fa-anchor solo">Anchor 3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#anch4" data-scroll>
+                            <span class="fa fa-anchor solo">Anchor 4</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </li>
+
+
+
+                        </ul>
+                    
+                    
+                 
+                    
+                </div>  
+            </div>
+
+        </nav> 
+
+
+        
+        
+        
+        
+        
+        
+ 
+
+
+ <footer class="footer">
+ 
+    <p class="text-muted">Coppright © copy 2016 ADAM</p>
+ 
+</footer>
+    
+</div>    
+    
+<script> 
+
+	/*Menu-toggle*/
+    $(".glyphicon glyphicon-th").click(function() {
+      
+        $("#sidebar-wrapper-left").show();
+    });
+
+</script>
+    </body>
+</html>

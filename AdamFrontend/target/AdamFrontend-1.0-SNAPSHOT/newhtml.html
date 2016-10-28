@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+     <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link href="/RetailSmart/Jquery/jquery.multiselect.css" rel="stylesheet"/>
+
+   </head>   
+     <body>
+
+<h3>A demonstration of how to access a Text Field</h3>
+
+<input type="text" id="namnj2" >
+ 
+ 
+<p>Click the "Try it" button to get the text in the text field.</p>
+
+<button onclick="myFunctionj2()">Try it</button>
+
+<p id="demoj2"></p>
+
+ 
+
+ 
+
+
+<script>
+ /*   
+function AjaxFileUpload() {
+    var file = document.getElementById("files");
+    //var file = fileInput;
+    var fd = new FormData();
+    fd.append("imageFileData", file);
+    var xhr = new XMLHttpRequest();
+      var y= "http://localhost:8080/TestJava/resources/simple/";
+  var z= y+'artificial.README1.txt';
+    xhr.open("G",  z,true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+             alert('success');
+        }
+        else if (uploadResult == 'success')
+             alert('error');
+    };
+    xhr.send(fd);
+}
+  */  
+    
+    
+    
+    
+function myFunctionj2() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if ( xhttp.status == 200) {
+   // document.getElementById("demoj2").innerHTML = xhttp.responseText;
+    }
+    
+    
+  };
+  
+   var x = document.getElementById("namnj2").value;
+   
+     var y= "http://localhost:8084/RESTfulExample/pdf/get";
+  var z= y ;
+  xhttp.open("GET", y, true);
+ 
+        xhttp.send();
+}
+ 
+</script>
+
+ 
+      
